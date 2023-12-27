@@ -1,6 +1,6 @@
-target protein name: Q15717
-# in degree: 13
-# out degree: 0
+target protein name:Q15717
+# in degree:13
+# out degree:0
 
 in_degree_connections::
 Q8TBF4 || 0.311133
