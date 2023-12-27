@@ -1,0 +1,21 @@
+target protein name:Q15717
+# in degree:13
+# out degree:0
+
+in_degree_connections::
+Q8TBF4 || 0.311133
+Q9NZV5 || 0.311133
+Q9H999 || 0.311133
+Q6ZNW5 || 0.311133
+Q9NXR8 || 0.311133
+Q9C0H2 || 0.311133
+Q00535 || 0.674374
+Q9NXR5 || 0.311133
+O00716 || 0.710749
+P40424 || 0.311133
+P40425 || 0.311133
+Q13838 || 0.311133
+Q86WA8 || 0.311133
+
+out_degree_connections::
+There's No Out Degree Connection
