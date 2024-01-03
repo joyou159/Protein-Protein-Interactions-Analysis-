@@ -26,7 +26,7 @@ def visualize_graph(df):
     node_color = [20000.0 * PPI_graph.degree(v) for v in PPI_graph]
     node_size = [v * 1000000 for v in betCent.values()]
     plt.figure(figsize=(40, 40))
-    pos = nx.spiral_layout(PPI_graph)
+    pos = nx.spring_layout(PPI_graph)
     nx.draw(PPI_graph, node_color=node_color, edge_color="gray", pos=pos,
             font_color='white', font_weight='bold', node_size=node_size)
     plt.show()
@@ -95,14 +95,14 @@ def calculate_path_score(graph, path):
         tuple: A tuple containing the total score of the path and a list of individual edge weights.
     """
     score_list = list()
-    score = 0
+    score = 1
     for i in range(len(path) - 1):
         u, v = path[i], path[i + 1]
         if graph.has_edge(u, v):
             weight = graph.get_edge_data(u, v)['weight']
-            score += log10(weight)
-            score_list.append(weight)
-    return (score, score_list)
+            score *= 10**(-weight)
+            score_list.append(round(10**(-weight), 3))
+    return (round(score, 3), score_list)
 
 
 def Export_PDF(graph, path_nodes, total_scores, pdf_filename):
@@ -138,7 +138,7 @@ def is_acyclic(graph, path):
             if nx.has_path(graph, v, u):  # Check if there is a path back to the source
                 graph_copy.add_edge(u, v)
                 print(
-                    f"there is a feedback loop between these nodes:{(u , v)}")
+                    f"there is a feedback loop between: {(u , v)}")
                 return False
             graph_copy.add_edge(u, v)
     return True
@@ -154,17 +154,26 @@ def find_acyclic_K_shortest_paths(graph, source, target, pdf_filename, k=100):
     - pdf_filename (str): The name of the PDF file to be created.
     - k (int): The number of top paths to find (default is 100).
     """
-    all_paths = list(nx.all_simple_paths(graph, source=source, target=target))
-    print(f"All paths before cyclic filtration:{all_paths}")
-    acyclic_paths = np.array(
-        [path for path in all_paths if is_acyclic(graph, path)], dtype=object)
-    print(f"All paths after cyclic filtration:{acyclic_paths}")
-    weight_score = np.array([calculate_path_score(graph, path)[0]
-                            for path in acyclic_paths])
-    shortest_paths_indices = np.argsort(weight_score)[::-1][:k]
-    k_shortest_paths = acyclic_paths[shortest_paths_indices]
-    ordered_score = 10**weight_score[shortest_paths_indices]
-    Export_PDF(graph, k_shortest_paths, ordered_score, pdf_filename)
+    graph_copy = graph.copy()
+    for u, v, data in graph_copy.edges(data=True):
+        probability = data.get("weight")
+        if probability == 0:
+            data['weight'] = np.Inf
+        else:
+            data['weight'] = round(-log10(probability), 3)
+
+    K_shortest_paths = list(nx.shortest_simple_paths(
+        graph_copy, source, target, weight="weight"))  # using Yen's algorithm
+    print(f"All paths before cyclic filtration:{K_shortest_paths}")
+    K_acyclic_shortest_paths = np.array(
+        [path for path in K_shortest_paths if is_acyclic(graph_copy, path)], dtype=object)[:k]
+    print(f"All paths after cyclic filtration:{K_acyclic_shortest_paths}")
+    paths_score = np.array([calculate_path_score(graph_copy, path)[
+        0] for path in K_acyclic_shortest_paths])
+    non_zero_paths_score = np.where(paths_score != 0)[0]
+    K_acyclic_shortest_paths = K_acyclic_shortest_paths[non_zero_paths_score]
+    paths_score = paths_score[non_zero_paths_score]
+    Export_PDF(graph_copy, K_acyclic_shortest_paths, paths_score, pdf_filename)
 
 
 def generate_path(graph):
@@ -187,7 +196,7 @@ def get_node_predecessors(graph, protein_of_interest):
     edge_weights = nx.get_edge_attributes(graph, "weight")
     for protein in predecessors:
         weight_list.append(edge_weights[(protein, protein_of_interest)])
-    # out_degree, out_conneced_proteins
+    # in_degree, in_conneced_proteins
     return k, list(zip(predecessors, weight_list))
 
 
@@ -293,7 +302,7 @@ def get_conversion_map(uniprot_ids):
     return lookup
 
 
-def saving_unweighed_graph_as_adjMatrix(graph, file_name):
+def saving_as_unweighed_graph_as_adjMatrix(graph, file_name):
     unweighted_graph = graph.copy()
     for _, _, data in unweighted_graph.edges(data=True):
         data["weight"] = 1
@@ -301,3 +310,17 @@ def saving_unweighed_graph_as_adjMatrix(graph, file_name):
     df = pd.DataFrame.sparse.from_spmatrix(
         adjacency_matrix, index=list(graph.nodes()), columns=list(graph.nodes()))
     df.to_csv(file_name)
+
+
+def basic_net_stats(G):
+    print(f"number of nodes {G.number_of_nodes()}")
+    print(f"number of edges {G.number_of_edges()}")
+    degree_sequence = [d for n, d in G.degree()]
+    print(f"average degree {(np.mean(degree_sequence)):.2f}")
+
+
+def get_graph_hubs(G, k=10):
+    degree_sequence = dict(G.degree())
+    sorted_degrees = dict(sorted(degree_sequence.items(),
+                          key=lambda item: item[1], reverse=True)[:k])
+    return sorted_degrees
