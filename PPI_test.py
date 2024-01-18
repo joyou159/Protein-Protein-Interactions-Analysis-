@@ -1,6 +1,6 @@
 from util import *
 
-file_path = "PathLinker_2018_human-ppi-weighted-cap0_75.txt"
+file_path = "Dataset\PathLinker_2018_human-ppi-weighted-cap0_75.txt"
 df = pd.read_csv(file_path, sep='\t')
 df = df[:5000]  # taking a portion of the graph
 
@@ -102,7 +102,7 @@ print("checking if there is a feedback loop between two nodes in a path")
 print(
     f'check if there is an edge between ("Q00535", "Q9NXR1") {PPI_graph.has_edge("Q00535", "Q9NXR1")}')
 print(
-    f'check if there a path back from ("Q9NXR1", "Q00535") {nx.has_path(PPI_graph,"Q9NXR1", "Q00535")}')
+    f'check if there a path back from ("Q9NXR1", "Q00535") {nx.has_path(PPI_graph, "Q9NXR1", "Q00535")}')
 
 # list paths' (source & target) that are acyclic  all of them of length 3 (small world effect)
 path_list = [
