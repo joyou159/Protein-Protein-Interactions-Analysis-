@@ -17,27 +17,27 @@ In this repository, we focus on the analysis of a Protein-Protein Interaction (P
 
 ## Analysis Procedures  
 
-## 1. Constructing the Biological Network
+### 1. Constructing the Biological Network
 
 To begin our analysis, we'll construct the biological network using the NetworkX Python package. This involves utilizing the provided interactome file, "PathLinker_2018_human-ppi-weighted-cap0_75.txt," which represents a directed interactome. Each interaction in the file includes the UniProt IDs of the interacting proteins **(nodes)**, the interaction confidence score **(weight)**, and the method used for identification.
 
-## 2. Acyclic Shortest Paths
+### 2. Acyclic Shortest Paths
 
 Given two proteins, we aim to find and list the acyclic shortest path(s) between them in a text file. The analysis includes providing the total path score, the weight of each interaction in the path(s), and reporting all available paths.
 
-## 3. Directly Connected Proteins
+### 3. Directly Connected Proteins
 
 For a given protein, we'll list all directly connected proteins in a text file. This analysis includes reporting the degree (number of connections) of the selected protein in a separate line. Each connected protein will be provided with its corresponding interaction weight.
 
-## 4. Proteins Degree Analysis
+### 4. Proteins Degree Analysis
 
 When given a set of proteins, we'll draw a histogram to visualize their degree distribution. Additionally, we'll rank these proteins from highly connected to least in a text file, with each line representing a protein and its corresponding degree.
 
-## 5. UniProt ID to Gene Name Conversion
+### 5. UniProt ID to Gene Name Conversion
 
 This analysis involves providing a conversion map between the protein UniProt ID and its gene name. The script will support conversion for either one protein ID or a set of protein IDs, enabling users to obtain their corresponding gene names.
 
-## 6. Unweighted Graph Conversion
+### 6. Unweighted Graph Conversion
 
 The final step is to convert the existing graph into an unweighted graph using the adjacency matrix method. The unweighted graph will be saved for further analysis.
 
