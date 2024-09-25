@@ -15,15 +15,28 @@ In this repository, we focus on the analysis of a Protein-Protein Interaction (P
     3. Interaction confidence (range 0 to 1).
     4. Method used to identify the interaction.
 
+<p align="center">
+  <img src="figs/Dataset_demo.png" alt="Demo of data included in the dataset" title="Demo of data included in the dataset" width="450" />
+</p>
+
+
 ## Analysis Procedures  
 
 ### 1. Constructing the Biological Network
 
 To begin our analysis, we'll construct the biological network using the NetworkX Python package. This involves utilizing the provided interactome file, "PathLinker_2018_human-ppi-weighted-cap0_75.txt," which represents a directed interactome. Each interaction in the file includes the UniProt IDs of the interacting proteins **(nodes)**, the interaction confidence score **(weight)**, and the method used for identification.
 
+<p align="center">
+  <img src="figs/Network.jpg" alt="Spring layout of the biological network" title="Spring layout of the biological network" width="300" />
+</p>
+
 ### 2. Acyclic Shortest Paths
 
 Given two proteins, we aim to find and list the acyclic shortest path(s) between them in a text file. The analysis includes providing the total path score, the weight of each interaction in the path(s), and reporting all available paths.
+
+<p align="center">
+  <img src="figs/shortest_path.jpg" alt="Finding the shortest path between two protiens for pathway signaling" title="Finding the shortest path between two protiens for pathway signaling" width="300" />
+</p>
 
 ### 3. Directly Connected Proteins
 
@@ -31,7 +44,11 @@ For a given protein, we'll list all directly connected proteins in a text file. 
 
 ### 4. Proteins Degree Analysis
 
-When given a set of proteins, we'll draw a histogram to visualize their degree distribution. Additionally, we'll rank these proteins from highly connected to least in a text file, with each line representing a protein and its corresponding degree.
+When given a set of proteins, we'll draw a histogram to visualize their degree distribution. Additionally, we'll rank these proteins from highly connected to least in a text file, with each line representing a protein and its corresponding degree. This is useful in identifying the Hubs in the network. 
+
+<p align="center">
+  <img src="figs/Hubs.png" alt="Finding the hubs in the network" title="Finding the hubs in the network" width="300" />
+</p>
 
 ### 5. UniProt ID to Gene Name Conversion
 
@@ -40,6 +57,13 @@ This analysis involves providing a conversion map between the protein UniProt ID
 ### 6. Unweighted Graph Conversion
 
 The final step is to convert the existing graph into an unweighted graph using the adjacency matrix method. The unweighted graph will be saved for further analysis.
+
+
+## Key Findings
+The analysis resulted in proving these properties about PPIN: 
+- Small World Effect 
+- Scale-free Property
+- Transitivity  
 
 **For a more in-depth understanding of the methodology and analysis, please refer to the notebook and attached paper.**
 
