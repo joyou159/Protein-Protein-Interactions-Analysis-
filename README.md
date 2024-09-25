@@ -27,7 +27,7 @@ In this repository, we focus on the analysis of a Protein-Protein Interaction (P
 To begin our analysis, we'll construct the biological network using the NetworkX Python package. This involves utilizing the provided interactome file, "PathLinker_2018_human-ppi-weighted-cap0_75.txt," which represents a directed interactome. Each interaction in the file includes the UniProt IDs of the interacting proteins **(nodes)**, the interaction confidence score **(weight)**, and the method used for identification.
 
 <p align="center">
-  <img src="figs/Network.jpg" alt="Spring layout of the biological network" title="Spring layout of the biological network" width="400" />
+  <img src="figs/Network.png" alt="Spring layout of the biological network" title="Spring layout of the biological network" width="400" />
 </p>
 
 ### 2. Acyclic Shortest Paths
