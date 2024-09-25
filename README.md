@@ -52,6 +52,7 @@ When given a set of proteins, we'll draw a histogram to visualize their degree d
   <img src="figs/Hubs.png" alt="Degrees distribution" title="Degrees distribution" width="300";  vertical-align:middle;" />
   <img src="figs/Hubs_report.png" alt="Finding the hubs in the network" title="Finding the hubs in the network" width="165"; vertical-align:middle;" />
 </p>
+
 ### 5. UniProt ID to Gene Name Conversion
 
 This analysis involves providing a conversion map between the protein UniProt ID and its gene name. The script will support conversion for either one protein ID or a set of protein IDs, enabling users to obtain their corresponding gene names.
