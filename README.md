@@ -27,7 +27,7 @@ In this repository, we focus on the analysis of a Protein-Protein Interaction (P
 To begin our analysis, we'll construct the biological network using the NetworkX Python package. This involves utilizing the provided interactome file, "PathLinker_2018_human-ppi-weighted-cap0_75.txt," which represents a directed interactome. Each interaction in the file includes the UniProt IDs of the interacting proteins **(nodes)**, the interaction confidence score **(weight)**, and the method used for identification.
 
 <p align="center">
-  <img src="figs/Network.jpg" alt="Spring layout of the biological network" title="Spring layout of the biological network" width="350" />
+  <img src="figs/Network.jpg" alt="Spring layout of the biological network" title="Spring layout of the biological network" width="400" />
 </p>
 
 ### 2. Acyclic Shortest Paths
@@ -35,7 +35,7 @@ To begin our analysis, we'll construct the biological network using the NetworkX
 Given two proteins, we aim to find and list the acyclic shortest path(s) between them in a text file. The analysis includes providing the total path score, the weight of each interaction in the path(s), and reporting all available paths.
 
 <p align="center">
-  <img src="figs/shortest_path.jpg" alt="Finding the shortest path between two protiens for pathway signaling" title="Finding the shortest path between two protiens for pathway signaling" width="350" />
+  <img src="figs/shortest_path.jpg" alt="Finding the shortest path between two protiens for pathway signaling" title="Finding the shortest path between two protiens for pathway signaling" width="400" />
 </p>
 
 ### 3. Directly Connected Proteins
