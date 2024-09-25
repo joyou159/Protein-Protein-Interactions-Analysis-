@@ -27,7 +27,7 @@ In this repository, we focus on the analysis of a Protein-Protein Interaction (P
 To begin our analysis, we'll construct the biological network using the NetworkX Python package. This involves utilizing the provided interactome file, "PathLinker_2018_human-ppi-weighted-cap0_75.txt," which represents a directed interactome. Each interaction in the file includes the UniProt IDs of the interacting proteins **(nodes)**, the interaction confidence score **(weight)**, and the method used for identification.
 
 <p align="center">
-  <img src="figs/Network.png" alt="Spring layout of the biological network" title="Spring layout of the biological network" width="400" />
+  <img src="figs/Network.png" alt="Spring layout of the biological network" title="Spring layout of the biological network" width="500" />
 </p>
 
 ### 2. Acyclic Shortest Paths
@@ -49,8 +49,8 @@ When given a set of proteins, we'll draw a histogram to visualize their degree d
 
 
 <p align="center">
-  <img src="figs/Hubs.png" alt="Degrees distribution" title="Degrees distribution" style="width:55%;  vertical-align:middle;" />
-  <img src="figs/Hubs_report.png" alt="Finding the hubs in the network" title="Finding the hubs in the network" style="width:30%; vertical-align:middle;" />
+  <img src="figs/Hubs.png" alt="Degrees distribution" title="Degrees distribution" width="300";  vertical-align:middle;" />
+  <img src="figs/Hubs_report.png" alt="Finding the hubs in the network" title="Finding the hubs in the network" width="165"; vertical-align:middle;" />
 </p>
 ### 5. UniProt ID to Gene Name Conversion
 
