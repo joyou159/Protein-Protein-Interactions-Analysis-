@@ -99,7 +99,7 @@ To set up the required environment for the Protein-Protein Interactions Analysis
 
 ## Acknowledgments
 
-**This project was supervised by [Dr. Ibrahim Youssef](https://github.com/Ibrahim-Youssef), who provided invaluable guidance and expertise throughout such incredible journey as bioinformatics course at Cairo University Faculty of Engineering.**
+**This project was supervised by [Dr. Ibrahim Youssef](https://www.linkedin.com/in/ibrahim-youssef-65262a145/), who provided invaluable guidance and expertise throughout such incredible journey as part of bioinformatics course at Cairo University Faculty of Engineering.**
 
 <div style="text-align: right">
     <img src="https://imgur.com/Wk4nR0m.png" alt="Cairo University Logo" width="100" style="border-radius: 50%;"/>
